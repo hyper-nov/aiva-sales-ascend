@@ -33,33 +33,33 @@ const EconomicsSlide = () => {
           <h1 className="text-5xl font-light text-slate-900 leading-tight">
             Честная математика:
             <br />
-            <span className="text-green-600 font-normal">сколько ваш бизнес экономит с AIVA</span>
+            <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent font-normal">сколько ваш бизнес экономит с AIVA</span>
           </h1>
         </div>
 
-        {/* Comparison */}
-        <div className="grid grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
+        {/* Modern comparison layout */}
+        <div className="grid grid-cols-2 gap-12 max-w-6xl mx-auto items-start">
           {/* Before AIVA */}
           <div className="space-y-6">
             <div className="text-center">
-              <h2 className="text-2xl font-light text-red-600 mb-4">До AIVA</h2>
-              <div className="w-full h-1 bg-gradient-to-r from-red-400 to-red-600 rounded-full"></div>
+              <h2 className="text-2xl font-light text-slate-700 mb-4">До AIVA</h2>
+              <div className="w-full h-1 bg-gradient-to-r from-slate-300 to-slate-400 rounded-full"></div>
             </div>
             
-            <div className="bg-red-50/50 backdrop-blur-sm rounded-2xl p-6 border border-red-100 space-y-4">
+            <div className="bg-gradient-to-br from-slate-50 to-slate-100/50 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 space-y-6">
               {beforeCosts.map((cost, index) => (
-                <div key={index} className="flex justify-between items-start">
-                  <span className="text-sm text-slate-700 flex-1 pr-4">{cost.item}:</span>
-                  <span className="text-lg font-medium text-red-600 whitespace-nowrap">
+                <div key={index} className="flex justify-between items-start group hover:bg-white/50 rounded-xl p-3 transition-all duration-300">
+                  <span className="text-sm text-slate-700 flex-1 pr-4 leading-relaxed">{cost.item}:</span>
+                  <span className="text-lg font-medium text-slate-800 whitespace-nowrap">
                     {formatNumber(parseInt(cost.amount.replace(/\s/g, '')))} ₽
                   </span>
                 </div>
               ))}
               
-              <div className="border-t border-red-200 pt-4">
-                <div className="flex justify-between items-center">
+              <div className="border-t border-slate-300 pt-6">
+                <div className="flex justify-between items-center bg-white/70 rounded-2xl p-4">
                   <span className="text-lg font-medium text-slate-900">ИТОГО:</span>
-                  <span className="text-2xl font-bold text-red-600">
+                  <span className="text-2xl font-bold text-slate-800">
                     {formatNumber(totalBefore)} ₽/год
                   </span>
                 </div>
@@ -67,40 +67,27 @@ const EconomicsSlide = () => {
             </div>
           </div>
 
-          {/* Arrow */}
-          <div className="flex items-center justify-center">
-            <div className="relative">
-              <div className="w-24 h-24 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center">
-                <div className="text-white text-2xl">→</div>
-              </div>
-              <div className="absolute -inset-2 bg-gradient-to-r from-green-400 to-blue-500 rounded-full blur opacity-20"></div>
-              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 text-center">
-                <p className="text-sm font-medium text-green-600">ЭКОНОМИЯ</p>
-              </div>
-            </div>
-          </div>
-
           {/* After AIVA */}
           <div className="space-y-6">
             <div className="text-center">
-              <h2 className="text-2xl font-light text-green-600 mb-4">С AIVA</h2>
-              <div className="w-full h-1 bg-gradient-to-r from-green-400 to-blue-500 rounded-full"></div>
+              <h2 className="text-2xl font-light text-slate-700 mb-4">С AIVA</h2>
+              <div className="w-full h-1 bg-gradient-to-r from-blue-400 to-cyan-500 rounded-full"></div>
             </div>
             
-            <div className="bg-green-50/50 backdrop-blur-sm rounded-2xl p-6 border border-green-100 space-y-4">
+            <div className="bg-gradient-to-br from-blue-50 to-cyan-50/50 backdrop-blur-sm rounded-3xl p-8 border border-blue-200/50 space-y-6">
               {afterCosts.map((cost, index) => (
-                <div key={index} className="flex justify-between items-start">
-                  <span className="text-sm text-slate-700 flex-1 pr-4">{cost.item}:</span>
-                  <span className="text-lg font-medium text-green-600 whitespace-nowrap">
+                <div key={index} className="flex justify-between items-start group hover:bg-white/50 rounded-xl p-3 transition-all duration-300">
+                  <span className="text-sm text-slate-700 flex-1 pr-4 leading-relaxed">{cost.item}:</span>
+                  <span className="text-lg font-medium text-blue-700 whitespace-nowrap">
                     {cost.amount === "0" ? "0 ₽" : `${formatNumber(parseInt(cost.amount.replace(/\s/g, '')))} ₽`}
                   </span>
                 </div>
               ))}
               
-              <div className="border-t border-green-200 pt-4">
-                <div className="flex justify-between items-center">
+              <div className="border-t border-blue-200 pt-6">
+                <div className="flex justify-between items-center bg-gradient-to-r from-blue-100/70 to-cyan-100/70 rounded-2xl p-4">
                   <span className="text-lg font-medium text-slate-900">ИТОГО:</span>
-                  <span className="text-2xl font-bold text-green-600">
+                  <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
                     {formatNumber(totalAfter)} ₽/год
                   </span>
                 </div>
@@ -110,13 +97,15 @@ const EconomicsSlide = () => {
         </div>
 
         {/* Savings highlight */}
-        <div className="max-w-3xl mx-auto">
-          <div className="bg-gradient-to-r from-green-100 to-blue-100 rounded-3xl p-8 border border-green-200">
-            <div className="text-center space-y-4">
-              <h3 className="text-3xl font-light text-slate-900">
-                Экономия до <span className="text-4xl font-bold text-green-600">{formatNumber(savings)} ₽/год</span>
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-gradient-to-r from-slate-900 via-blue-900 to-cyan-900 rounded-3xl p-8 border border-slate-700 relative overflow-hidden">
+            {/* Background gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-cyan-600/20"></div>
+            <div className="relative z-10 text-center space-y-4">
+              <h3 className="text-3xl font-light text-white">
+                Экономия до <span className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">{formatNumber(savings)} ₽/год</span>
               </h3>
-              <p className="text-lg text-slate-600 font-light max-w-2xl mx-auto">
+              <p className="text-lg text-slate-300 font-light max-w-2xl mx-auto">
                 AIVA не просто дешевле, она сразу же приносит дополнительную прибыль 
                 за счет роста эффективности
               </p>

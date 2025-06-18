@@ -61,7 +61,7 @@ const ProblemSlide = () => {
                       <span className="text-4xl font-light text-red-500">{problem.stat}</span>
                       <span className="text-lg text-slate-700 font-light">{problem.description}</span>
                     </div>
-                    <p className="text-sm text-slate-500 leading-relaxed">{problem.detail}</p>
+                    <p className="text-sm text-slate-700 leading-relaxed">{problem.detail}</p>
                   </div>
                 </div>
               </div>
@@ -71,7 +71,7 @@ const ProblemSlide = () => {
 
         {/* Bottom accent */}
         <div className="text-center">
-          <p className="text-lg text-slate-600 font-light max-w-3xl mx-auto">
+          <p className="text-xl text-slate-700 font-medium max-w-3xl mx-auto">
             Только в этом месяце вы уже потеряли часть выручки, 
             <span className="text-red-500"> даже не зная об этом</span>
           </p>

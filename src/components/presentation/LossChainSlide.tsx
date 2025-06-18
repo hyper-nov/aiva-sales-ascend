@@ -25,13 +25,20 @@ const LossChainSlide = () => {
           </h1>
         </div>
 
-        {/* Loss chain */}
-        <div className="max-w-4xl mx-auto">
+        {/* Loss chain with decorative elements */}
+        <div className="max-w-5xl mx-auto relative">
+          {/* Decorative AI-themed background elements */}
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute top-1/4 left-10 w-20 h-20 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 blur-2xl"></div>
+            <div className="absolute bottom-1/4 right-12 w-16 h-16 rounded-full bg-gradient-to-r from-indigo-400 to-cyan-400 blur-xl"></div>
+            <div className="absolute top-3/4 left-1/4 w-12 h-12 rounded-full bg-gradient-to-r from-purple-300 to-pink-300 blur-lg"></div>
+          </div>
+          
           <div className="relative">
             {/* Connecting line */}
-            <div className="absolute left-1/2 transform -translate-x-0.5 top-16 bottom-16 w-0.5 bg-gradient-to-b from-blue-200 via-red-300 to-red-500"></div>
+            <div className="absolute left-1/2 transform -translate-x-0.5 top-20 bottom-20 w-0.5 bg-gradient-to-b from-blue-200 via-red-300 to-red-500"></div>
             
-            <div className="space-y-12">
+            <div className="space-y-16">
               {lossSteps.map((step, index) => (
                 <div key={index} className="relative flex items-center justify-center">
                   {/* Step circle */}
@@ -41,23 +48,39 @@ const LossChainSlide = () => {
                     'bg-red-300'
                   }`}></div>
                   
-                  {/* Step content */}
-                  <div className={`w-full max-w-md mx-auto ${
-                    index % 2 === 0 ? 'text-right pr-16' : 'text-left pl-16'
-                  }`}>
-                    <div className={`inline-block bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 border ${
-                      index === 0 ? 'border-blue-200 shadow-blue-100/50' :
-                      index === lossSteps.length - 1 ? 'border-red-200 shadow-red-100/50' :
-                      'border-red-100 shadow-red-50/50'
-                    } shadow-lg`}>
-                      <p className={`text-lg font-light ${
-                        index === 0 ? 'text-blue-700' :
-                        index === lossSteps.length - 1 ? 'text-red-700' :
-                        'text-red-600'
-                      }`}>
-                        {step}
-                      </p>
-                    </div>
+                  {/* Step content with better positioning */}
+                  <div className="w-full max-w-4xl mx-auto grid grid-cols-2 gap-8 items-center">
+                    {index % 2 === 0 ? (
+                      <>
+                        <div className="text-right">
+                          <div className="inline-block bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 border border-slate-200 shadow-lg">
+                            <p className={`text-lg font-light ${
+                              index === 0 ? 'text-blue-700' :
+                              index === lossSteps.length - 1 ? 'text-red-700' :
+                              'text-red-600'
+                            }`}>
+                              {step}
+                            </p>
+                          </div>
+                        </div>
+                        <div></div>
+                      </>
+                    ) : (
+                      <>
+                        <div></div>
+                        <div className="text-left">
+                          <div className="inline-block bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 border border-slate-200 shadow-lg">
+                            <p className={`text-lg font-light ${
+                              index === 0 ? 'text-blue-700' :
+                              index === lossSteps.length - 1 ? 'text-red-700' :
+                              'text-red-600'
+                            }`}>
+                              {step}
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               ))}
