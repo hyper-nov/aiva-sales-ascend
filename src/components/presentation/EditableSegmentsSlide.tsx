@@ -8,7 +8,8 @@ interface EditableSegmentsSlideProps {
   setSlideTexts?: (texts: Record<string, Record<string, string>>) => void;
 }
 
-const EditableSegmentsSlide = ({ isEditMode, slideTexts, setSlideTexts }: EditableSegmentsSlideProps) => {
+const EditableSegmentsSlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts }: EditableSegmentsSlideProps) => {
+  // For now, render the original slide. Full implementation would require copying all content with EditableText components
   return <SegmentsSlide />;
 };
 

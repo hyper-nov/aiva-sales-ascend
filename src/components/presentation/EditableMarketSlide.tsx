@@ -8,7 +8,8 @@ interface EditableMarketSlideProps {
   setSlideTexts?: (texts: Record<string, Record<string, string>>) => void;
 }
 
-const EditableMarketSlide = ({ isEditMode, slideTexts, setSlideTexts }: EditableMarketSlideProps) => {
+const EditableMarketSlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts }: EditableMarketSlideProps) => {
+  // For now, render the original slide. Full implementation would require copying all content with EditableText components
   return <MarketSlide />;
 };
 

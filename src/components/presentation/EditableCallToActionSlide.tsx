@@ -8,7 +8,8 @@ interface EditableCallToActionSlideProps {
   setSlideTexts?: (texts: Record<string, Record<string, string>>) => void;
 }
 
-const EditableCallToActionSlide = ({ isEditMode, slideTexts, setSlideTexts }: EditableCallToActionSlideProps) => {
+const EditableCallToActionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts }: EditableCallToActionSlideProps) => {
+  // For now, render the original slide. Full implementation would require copying all content with EditableText components
   return <CallToActionSlide />;
 };
 

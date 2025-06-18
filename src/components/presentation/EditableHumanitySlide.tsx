@@ -8,7 +8,8 @@ interface EditableHumanitySlideProps {
   setSlideTexts?: (texts: Record<string, Record<string, string>>) => void;
 }
 
-const EditableHumanitySlide = ({ isEditMode, slideTexts, setSlideTexts }: EditableHumanitySlideProps) => {
+const EditableHumanitySlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts }: EditableHumanitySlideProps) => {
+  // For now, render the original slide. Full implementation would require copying all content with EditableText components
   return <HumanitySlide />;
 };
 

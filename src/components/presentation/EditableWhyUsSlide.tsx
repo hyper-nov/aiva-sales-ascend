@@ -8,7 +8,8 @@ interface EditableWhyUsSlideProps {
   setSlideTexts?: (texts: Record<string, Record<string, string>>) => void;
 }
 
-const EditableWhyUsSlide = ({ isEditMode, slideTexts, setSlideTexts }: EditableWhyUsSlideProps) => {
+const EditableWhyUsSlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts }: EditableWhyUsSlideProps) => {
+  // For now, render the original slide. Full implementation would require copying all content with EditableText components
   return <WhyUsSlide />;
 };
 
