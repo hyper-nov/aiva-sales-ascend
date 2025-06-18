@@ -6,6 +6,16 @@ import ProblemSlide from './presentation/ProblemSlide';
 import LossChainSlide from './presentation/LossChainSlide';
 import SolutionSlide from './presentation/SolutionSlide';
 import EconomicsSlide from './presentation/EconomicsSlide';
+import BenefitsSlide from './presentation/BenefitsSlide';
+import ComparisonSlide from './presentation/ComparisonSlide';
+import HumanVsAiSlide from './presentation/HumanVsAiSlide';
+import HumanitySlide from './presentation/HumanitySlide';
+import SegmentsSlide from './presentation/SegmentsSlide';
+import MarketSlide from './presentation/MarketSlide';
+import IntegrationSlide from './presentation/IntegrationSlide';
+import PricingSlide from './presentation/PricingSlide';
+import WhyUsSlide from './presentation/WhyUsSlide';
+import CallToActionSlide from './presentation/CallToActionSlide';
 
 const PresentationNavigator = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,7 +25,17 @@ const PresentationNavigator = () => {
     { component: ProblemSlide, title: "Глобальная проблема" },
     { component: LossChainSlide, title: "Цепочка потерь" },
     { component: SolutionSlide, title: "Решение AIVA" },
-    { component: EconomicsSlide, title: "Экономика" }
+    { component: EconomicsSlide, title: "Экономика" },
+    { component: BenefitsSlide, title: "Реальные выгоды" },
+    { component: ComparisonSlide, title: "Преимущества" },
+    { component: HumanVsAiSlide, title: "Человек vs. AI" },
+    { component: HumanitySlide, title: "Человечность" },
+    { component: SegmentsSlide, title: "Сегменты рынка" },
+    { component: MarketSlide, title: "Рынок и потенциал" },
+    { component: IntegrationSlide, title: "Интеграция" },
+    { component: PricingSlide, title: "Ценообразование" },
+    { component: WhyUsSlide, title: "Почему мы" },
+    { component: CallToActionSlide, title: "Призыв к действию" }
   ];
 
   const CurrentSlideComponent = slides[currentSlide].component;
