@@ -95,8 +95,8 @@ const EditableBenefitsSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
                     
                     <div className="space-y-2">
                       <EditableText
-                        as="div"
-                        className="text-3xl font-light bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent"
+                        as="span"
+                        className="text-3xl font-light bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent block"
                         isEditing={isEditMode}
                         onSave={(text) => updateText(`stat${index}`, text)}
                       >
