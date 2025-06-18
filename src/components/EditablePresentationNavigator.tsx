@@ -2,21 +2,21 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Edit, Eye, Download } from 'lucide-react';
-import TitleSlide from './presentation/TitleSlide';
-import ProblemSlide from './presentation/ProblemSlide';
-import LossChainSlide from './presentation/LossChainSlide';
-import SolutionSlide from './presentation/SolutionSlide';
-import EconomicsSlide from './presentation/EconomicsSlide';
-import BenefitsSlide from './presentation/BenefitsSlide';
-import ComparisonSlide from './presentation/ComparisonSlide';
-import HumanVsAiSlide from './presentation/HumanVsAiSlide';
-import HumanitySlide from './presentation/HumanitySlide';
-import SegmentsSlide from './presentation/SegmentsSlide';
-import MarketSlide from './presentation/MarketSlide';
-import IntegrationSlide from './presentation/IntegrationSlide';
-import PricingSlide from './presentation/PricingSlide';
-import WhyUsSlide from './presentation/WhyUsSlide';
-import CallToActionSlide from './presentation/CallToActionSlide';
+import EditableTitleSlide from './presentation/EditableTitleSlide';
+import EditableProblemSlide from './presentation/EditableProblemSlide';
+import EditableLossChainSlide from './presentation/EditableLossChainSlide';
+import EditableSolutionSlide from './presentation/EditableSolutionSlide';
+import EditableEconomicsSlide from './presentation/EditableEconomicsSlide';
+import EditableBenefitsSlide from './presentation/EditableBenefitsSlide';
+import EditableComparisonSlide from './presentation/EditableComparisonSlide';
+import EditableHumanVsAiSlide from './presentation/EditableHumanVsAiSlide';
+import EditableHumanitySlide from './presentation/EditableHumanitySlide';
+import EditableSegmentsSlide from './presentation/EditableSegmentsSlide';
+import EditableMarketSlide from './presentation/EditableMarketSlide';
+import EditableIntegrationSlide from './presentation/EditableIntegrationSlide';
+import EditablePricingSlide from './presentation/EditablePricingSlide';
+import EditableWhyUsSlide from './presentation/EditableWhyUsSlide';
+import EditableCallToActionSlide from './presentation/EditableCallToActionSlide';
 
 const EditablePresentationNavigator = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -24,21 +24,21 @@ const EditablePresentationNavigator = () => {
   const [slideTexts, setSlideTexts] = useState<Record<string, Record<string, string>>>({});
   
   const slides = [
-    { component: TitleSlide, title: "Заглавный слайд" },
-    { component: ProblemSlide, title: "Глобальная проблема" },
-    { component: LossChainSlide, title: "Цепочка потерь" },
-    { component: SolutionSlide, title: "Решение AIVA" },
-    { component: EconomicsSlide, title: "Экономика" },
-    { component: BenefitsSlide, title: "Реальные выгоды" },
-    { component: ComparisonSlide, title: "Преимущества" },
-    { component: HumanVsAiSlide, title: "Человек vs. AI" },
-    { component: HumanitySlide, title: "Человечность" },
-    { component: SegmentsSlide, title: "Сегменты рынка" },
-    { component: MarketSlide, title: "Рынок и потенциал" },
-    { component: IntegrationSlide, title: "Интеграция" },
-    { component: PricingSlide, title: "Ценообразование" },
-    { component: WhyUsSlide, title: "Почему мы" },
-    { component: CallToActionSlide, title: "Призыв к действию" }
+    { component: EditableTitleSlide, title: "Заглавный слайд" },
+    { component: EditableProblemSlide, title: "Глобальная проблема" },
+    { component: EditableLossChainSlide, title: "Цепочка потерь" },
+    { component: EditableSolutionSlide, title: "Решение AIVA" },
+    { component: EditableEconomicsSlide, title: "Экономика" },
+    { component: EditableBenefitsSlide, title: "Реальные выгоды" },
+    { component: EditableComparisonSlide, title: "Преимущества" },
+    { component: EditableHumanVsAiSlide, title: "Человек vs. AI" },
+    { component: EditableHumanitySlide, title: "Человечность" },
+    { component: EditableSegmentsSlide, title: "Сегменты рынка" },
+    { component: EditableMarketSlide, title: "Рынок и потенциал" },
+    { component: EditableIntegrationSlide, title: "Интеграция" },
+    { component: EditablePricingSlide, title: "Ценообразование" },
+    { component: EditableWhyUsSlide, title: "Почему мы" },
+    { component: EditableCallToActionSlide, title: "Призыв к действию" }
   ];
 
   const CurrentSlideComponent = slides[currentSlide].component;
