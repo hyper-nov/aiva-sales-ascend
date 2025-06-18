@@ -2,7 +2,7 @@
 import React from 'react';
 import PresentationSlide from '../PresentationSlide';
 import EditableText from '../EditableText';
-import { AlertTriangle, TrendingDown, Users } from 'lucide-react';
+import { Clock, Users, Monitor, Star } from 'lucide-react';
 
 interface EditableProblemSlideProps {
   isEditMode?: boolean;
@@ -26,95 +26,124 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
     }
   };
 
+  const problems = [
+    {
+      icon: Clock,
+      stat: "22%",
+      description: "времени менеджер реально продаёт",
+      detail: "Всё остальное — отчёты, CRM, \"совещания\" и рутина"
+    },
+    {
+      icon: Users,
+      stat: "40%",
+      description: "лидов теряются без единого звонка",
+      detail: "\"Горячие\" заявки уходят конкурентам из-за очереди"
+    },
+    {
+      icon: Monitor,
+      stat: "52%",
+      description: "разговоров — \"невидимки\"",
+      detail: "Никто не анализирует — вы не знаете, где сливаются клиенты"
+    },
+    {
+      icon: Star,
+      stat: "20%",
+      description: "клиентов бросают заявку",
+      detail: "Только из-за ожидания ответа"
+    }
+  ];
+
   return (
-    <PresentationSlide slideNumber={2} background="accent">
-      <div className="text-center space-y-12">
-        <div className="space-y-6">
-          <div className="flex justify-center">
-            <div className="w-20 h-20 bg-gradient-to-r from-red-500 to-orange-500 rounded-full flex items-center justify-center">
-              <AlertTriangle className="w-10 h-10 text-white" />
-            </div>
-          </div>
-          
+    <PresentationSlide slideNumber={2} background="default">
+      <div className="space-y-16">
+        {/* Header */}
+        <div className="text-center space-y-6">
           <EditableText
             as="h1"
-            className="text-6xl font-light text-slate-900 leading-tight"
+            className="text-5xl font-light text-slate-900 leading-tight"
             isEditing={isEditMode}
             onSave={(text) => updateText('title', text)}
           >
-            {currentTexts.title || 'Глобальная проблема'}
+            {currentTexts.title || (
+              <>
+                Как каждый день ваш бизнес
+                <br />
+                <span className="text-red-500 font-normal">теряет деньги</span>
+              </>
+            )}
           </EditableText>
           
           <EditableText
             as="p"
-            className="text-2xl text-slate-600 font-light max-w-4xl mx-auto"
+            className="text-xl text-slate-600 font-light"
             isEditing={isEditMode}
             onSave={(text) => updateText('subtitle', text)}
           >
-            {currentTexts.subtitle || 'Компании теряют миллионы из-за неэффективных продаж'}
+            {currentTexts.subtitle || 'Факты, которые болят'}
           </EditableText>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-            <TrendingDown className="w-12 h-12 text-red-500 mx-auto mb-4" />
-            <EditableText
-              as="h3"
-              className="text-2xl font-semibold text-slate-800 mb-3"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('stat1Title', text)}
-            >
-              {currentTexts.stat1Title || '70% потерь'}
-            </EditableText>
-            <EditableText
-              as="p"
-              className="text-slate-600 leading-relaxed"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('stat1Desc', text)}
-            >
-              {currentTexts.stat1Desc || 'потенциальных клиентов теряется из-за плохого первого контакта'}
-            </EditableText>
-          </div>
+        {/* Problems grid */}
+        <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
+          {problems.map((problem, index) => (
+            <div key={index} className="group">
+              <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 hover:border-red-200 transition-all duration-500 hover:shadow-xl hover:shadow-red-100/50">
+                <div className="flex items-start space-x-6">
+                  <div className="flex-shrink-0 relative">
+                    <div className="w-14 h-14 bg-gradient-to-r from-red-50 to-red-100 rounded-2xl flex items-center justify-center group-hover:from-red-100 group-hover:to-red-200 transition-all duration-300">
+                      <problem.icon className="w-7 h-7 text-red-500" />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-3 flex-1">
+                    <div className="flex items-baseline space-x-3">
+                      <EditableText
+                        as="span"
+                        className="text-4xl font-light text-red-500"
+                        isEditing={isEditMode}
+                        onSave={(text) => updateText(`stat${index}`, text)}
+                      >
+                        {currentTexts[`stat${index}`] || problem.stat}
+                      </EditableText>
+                      <EditableText
+                        as="span"
+                        className="text-lg text-slate-700 font-light"
+                        isEditing={isEditMode}
+                        onSave={(text) => updateText(`description${index}`, text)}
+                      >
+                        {currentTexts[`description${index}`] || problem.description}
+                      </EditableText>
+                    </div>
+                    <EditableText
+                      as="p"
+                      className="text-sm text-slate-700 leading-relaxed"
+                      isEditing={isEditMode}
+                      onSave={(text) => updateText(`detail${index}`, text)}
+                    >
+                      {currentTexts[`detail${index}`] || problem.detail}
+                    </EditableText>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
-          <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-            <Users className="w-12 h-12 text-orange-500 mx-auto mb-4" />
-            <EditableText
-              as="h3"
-              className="text-2xl font-semibold text-slate-800 mb-3"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('stat2Title', text)}
-            >
-              {currentTexts.stat2Title || '80% времени'}
-            </EditableText>
-            <EditableText
-              as="p"
-              className="text-slate-600 leading-relaxed"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('stat2Desc', text)}
-            >
-              {currentTexts.stat2Desc || 'менеджеры тратят на рутинные задачи вместо продаж'}
-            </EditableText>
-          </div>
-
-          <div className="bg-white/60 backdrop-blur-sm rounded-3xl p-8 border border-white/20">
-            <AlertTriangle className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-            <EditableText
-              as="h3"
-              className="text-2xl font-semibold text-slate-800 mb-3"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('stat3Title', text)}
-            >
-              {currentTexts.stat3Title || '$2.5 млн'}
-            </EditableText>
-            <EditableText
-              as="p"
-              className="text-slate-600 leading-relaxed"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('stat3Desc', text)}
-            >
-              {currentTexts.stat3Desc || 'средние годовые потери компании из-за неэффективных процессов'}
-            </EditableText>
-          </div>
+        {/* Bottom accent */}
+        <div className="text-center">
+          <EditableText
+            as="p"
+            className="text-xl text-slate-700 font-medium max-w-3xl mx-auto"
+            isEditing={isEditMode}
+            onSave={(text) => updateText('bottomText', text)}
+          >
+            {currentTexts.bottomText || (
+              <>
+                Только в этом месяце вы уже потеряли часть выручки, 
+                <span className="text-red-500"> даже не зная об этом</span>
+              </>
+            )}
+          </EditableText>
         </div>
       </div>
     </PresentationSlide>
