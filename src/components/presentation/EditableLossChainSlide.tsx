@@ -37,24 +37,24 @@ const EditableLossChainSlide = ({ isEditMode = false, slideTexts = {}, setSlideT
 
   return (
     <PresentationSlide slideNumber={3} background="default">
-      <div className="relative min-h-screen py-20 overflow-hidden">
-        {/* Enhanced futuristic background */}
+      <div className="relative min-h-screen py-16 overflow-hidden">
+        {/* Futuristic background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-20 w-96 h-96 rounded-full bg-gradient-to-r from-blue-600/12 to-cyan-400/12 blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-12 w-80 h-80 rounded-full bg-gradient-to-r from-slate-800/18 to-blue-900/18 blur-2xl"></div>
-          <div className="absolute top-3/4 left-1/4 w-48 h-48 rounded-full bg-gradient-to-r from-cyan-400/12 to-blue-600/12 blur-xl"></div>
+          <div className="absolute top-1/4 left-20 w-64 h-64 rounded-full bg-gradient-to-r from-blue-600/10 to-cyan-400/10 blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-12 w-48 h-48 rounded-full bg-gradient-to-r from-slate-800/15 to-blue-900/15 blur-2xl"></div>
+          <div className="absolute top-3/4 left-1/4 w-32 h-32 rounded-full bg-gradient-to-r from-cyan-400/10 to-blue-600/10 blur-xl"></div>
           
-          {/* Enhanced elegant lines */}
-          <div className="absolute top-1/3 right-1/4 w-32 h-px bg-gradient-to-r from-transparent via-blue-400/40 to-transparent"></div>
-          <div className="absolute bottom-1/3 left-1/3 w-px h-28 bg-gradient-to-b from-transparent via-cyan-400/40 to-transparent"></div>
+          {/* Elegant lines */}
+          <div className="absolute top-1/3 right-1/4 w-24 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
+          <div className="absolute bottom-1/3 left-1/3 w-px h-20 bg-gradient-to-b from-transparent via-cyan-400/30 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 space-y-20 max-w-7xl mx-auto px-8">
-          {/* Enhanced header */}
-          <div className="text-center space-y-8">
+        <div className="relative z-10 space-y-16 max-w-6xl mx-auto px-8">
+          {/* Header */}
+          <div className="text-center space-y-6">
             <EditableText
               as="h1"
-              className="text-7xl font-light text-slate-900 leading-tight"
+              className="text-5xl font-light text-slate-900 leading-tight"
               isEditing={isEditMode}
               onSave={(text) => updateText('title', text)}
             >
@@ -62,30 +62,30 @@ const EditableLossChainSlide = ({ isEditMode = false, slideTexts = {}, setSlideT
             </EditableText>
           </div>
 
-          {/* Enhanced loss chain */}
-          <div className="max-w-6xl mx-auto relative">
-            {/* Enhanced connecting line */}
-            <div className="absolute left-1/2 transform -translate-x-0.5 top-24 bottom-24 w-1 bg-gradient-to-b from-blue-300 via-slate-400 to-slate-600 rounded-full"></div>
+          {/* Loss chain */}
+          <div className="max-w-5xl mx-auto relative">
+            {/* Connecting line */}
+            <div className="absolute left-1/2 transform -translate-x-0.5 top-20 bottom-20 w-0.5 bg-gradient-to-b from-blue-300 via-slate-400 to-slate-600"></div>
             
-            <div className="space-y-16">
+            <div className="space-y-12">
               {lossSteps.map((step, index) => (
                 <div key={index} className="relative flex items-center justify-center">
-                  {/* Enhanced step circle */}
-                  <div className={`absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full z-10 shadow-lg ${
+                  {/* Step circle */}
+                  <div className={`absolute left-1/2 transform -translate-x-1/2 w-4 h-4 rounded-full z-10 ${
                     index === 0 ? 'bg-gradient-to-r from-blue-400 to-cyan-400' : 
                     index === lossSteps.length - 1 ? 'bg-gradient-to-r from-slate-500 to-slate-600' : 
                     'bg-gradient-to-r from-slate-400 to-slate-500'
                   }`}></div>
                   
-                  {/* Enhanced step content */}
-                  <div className="w-full max-w-5xl mx-auto grid grid-cols-2 gap-12 items-center">
+                  {/* Step content */}
+                  <div className="w-full max-w-4xl mx-auto grid grid-cols-2 gap-8 items-center">
                     {index % 2 === 0 ? (
                       <>
                         <div className="text-right">
-                          <div className="inline-block bg-gradient-to-br from-white/95 to-slate-50/95 backdrop-blur-sm rounded-3xl px-8 py-6 border border-slate-200/70 shadow-xl">
+                          <div className="inline-block bg-gradient-to-br from-white/90 to-slate-50/90 backdrop-blur-sm rounded-2xl px-6 py-4 border border-slate-200/60 shadow-lg">
                             <EditableText
                               as="p"
-                              className={`text-2xl font-light ${
+                              className={`text-lg font-light ${
                                 index === 0 ? 'text-blue-700' :
                                 index === lossSteps.length - 1 ? 'text-slate-700' :
                                 'text-slate-600'
@@ -103,10 +103,10 @@ const EditableLossChainSlide = ({ isEditMode = false, slideTexts = {}, setSlideT
                       <>
                         <div></div>
                         <div className="text-left">
-                          <div className="inline-block bg-gradient-to-br from-white/95 to-slate-50/95 backdrop-blur-sm rounded-3xl px-8 py-6 border border-slate-200/70 shadow-xl">
+                          <div className="inline-block bg-gradient-to-br from-white/90 to-slate-50/90 backdrop-blur-sm rounded-2xl px-6 py-4 border border-slate-200/60 shadow-lg">
                             <EditableText
                               as="p"
-                              className={`text-2xl font-light ${
+                              className={`text-lg font-light ${
                                 index === 0 ? 'text-blue-700' :
                                 index === lossSteps.length - 1 ? 'text-slate-700' :
                                 'text-slate-600'
