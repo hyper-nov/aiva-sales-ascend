@@ -23,7 +23,7 @@ const PresentationSlide = ({
 
   return (
     <div className={cn(
-      "min-h-screen w-full flex flex-col justify-center items-center relative overflow-hidden",
+      "w-full h-screen flex flex-col justify-center items-center relative overflow-hidden",
       backgroundStyles[background],
       className
     )}>
