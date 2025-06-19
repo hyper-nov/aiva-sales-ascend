@@ -23,7 +23,7 @@ const PresentationSlide = ({
 
   return (
     <div className={cn(
-      "w-full h-screen flex flex-col justify-center items-center relative overflow-hidden",
+      "w-full min-h-screen flex flex-col justify-start items-center relative overflow-hidden py-16",
       backgroundStyles[background],
       className
     )}>
@@ -42,12 +42,12 @@ const PresentationSlide = ({
            }}>
       </div>
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 py-8">
         {children}
       </div>
       
       {slideNumber && (
-        <div className="absolute bottom-8 right-8 text-slate-400 text-sm font-light">
+        <div className="absolute bottom-8 right-8 text-slate-400 text-sm font-light z-20">
           {slideNumber.toString().padStart(2, '0')}
         </div>
       )}
