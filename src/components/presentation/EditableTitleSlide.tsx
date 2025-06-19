@@ -28,91 +28,71 @@ const EditableTitleSlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts
 
   return (
     <PresentationSlide slideNumber={1} background="gradient">
-      <div className="text-center space-y-8">
-        {/* Logo/Brand area */}
-        <div className="flex items-center justify-center space-x-4 mb-12">
-          <div className="relative">
-            <div className="w-16 h-16 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center">
-              <Zap className="w-8 h-8 text-white" />
+      <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Futuristic background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-gradient-to-r from-blue-600/10 to-cyan-400/10 blur-3xl"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-gradient-to-r from-slate-800/20 to-blue-900/20 blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/4 w-px h-32 bg-gradient-to-b from-transparent via-blue-400/30 to-transparent"></div>
+          <div className="absolute top-1/3 right-1/3 w-24 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"></div>
+        </div>
+
+        <div className="relative z-10 text-center space-y-12 max-w-6xl mx-auto px-8">
+          {/* Brand */}
+          <div className="flex items-center justify-center space-x-6 mb-16">
+            <div className="relative">
+              <div className="w-20 h-20 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl flex items-center justify-center">
+                <Zap className="w-10 h-10 text-white" />
+              </div>
+              <div className="absolute -inset-2 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-3xl blur opacity-20"></div>
             </div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl blur opacity-25"></div>
+            <EditableText
+              as="span"
+              className="text-4xl font-light text-slate-800 tracking-wider"
+              isEditing={isEditMode}
+              onSave={(text) => updateText('brand', text)}
+            >
+              {currentTexts.brand || 'AIVA'}
+            </EditableText>
           </div>
-          <EditableText
-            as="span"
-            className="text-3xl font-light text-slate-800 tracking-wider"
-            isEditing={isEditMode}
-            onSave={(text) => updateText('brand', text)}
-          >
-            {currentTexts.brand || 'AIVA'}
-          </EditableText>
-        </div>
 
-        {/* Main title */}
-        <div className="space-y-6">
-          <EditableText
-            as="h1"
-            className="text-7xl font-extralight text-slate-900 leading-tight"
-            isEditing={isEditMode}
-            onSave={(text) => updateText('mainTitle', text)}
-          >
-            {currentTexts.mainTitle || 'Искусственный интеллект,'}
-          </EditableText>
-          
-          <EditableText
-            as="h1"
-            className="text-7xl bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-light"
-            isEditing={isEditMode}
-            onSave={(text) => updateText('subTitle', text)}
-          >
-            {currentTexts.subTitle || 'который продаёт'}
-          </EditableText>
-          
-          <div className="w-24 h-px bg-gradient-to-r from-blue-500 to-purple-500 mx-auto my-8"></div>
-          
-          <EditableText
-            as="p"
-            className="text-2xl text-slate-600 font-light max-w-4xl mx-auto leading-relaxed"
-            isEditing={isEditMode}
-            onSave={(text) => updateText('description', text)}
-          >
-            {currentTexts.description || 'Будущее эффективных продаж и клиентского сервиса уже сегодня'}
-          </EditableText>
-        </div>
+          {/* Main title */}
+          <div className="space-y-8">
+            <EditableText
+              as="h1"
+              className="text-7xl font-extralight text-slate-900 leading-tight"
+              isEditing={isEditMode}
+              onSave={(text) => updateText('mainTitle', text)}
+            >
+              {currentTexts.mainTitle || 'Искусственный интеллект, который продаёт'}
+            </EditableText>
+            
+            <div className="w-32 h-px bg-gradient-to-r from-blue-500 via-cyan-400 to-blue-500 mx-auto my-12"></div>
+            
+            <EditableText
+              as="p"
+              className="text-2xl text-slate-600 font-light max-w-4xl mx-auto leading-relaxed"
+              isEditing={isEditMode}
+              onSave={(text) => updateText('subtitle', text)}
+            >
+              {currentTexts.subtitle || 'Будущее эффективных продаж и клиентского сервиса уже сегодня'}
+            </EditableText>
+          </div>
 
-        {/* Subtle accent elements */}
-        <div className="flex justify-center items-center space-x-12 mt-16 opacity-60">
-          <div className="flex items-center space-x-2 text-slate-500">
-            <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-            <EditableText
-              as="span"
-              className="text-sm font-light"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('feature1', text)}
-            >
-              {currentTexts.feature1 || 'AI-агенты'}
-            </EditableText>
-          </div>
-          <div className="flex items-center space-x-2 text-slate-500">
-            <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
-            <EditableText
-              as="span"
-              className="text-sm font-light"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('feature2', text)}
-            >
-              {currentTexts.feature2 || 'Голосовая аналитика'}
-            </EditableText>
-          </div>
-          <div className="flex items-center space-x-2 text-slate-500">
-            <div className="w-2 h-2 bg-indigo-400 rounded-full"></div>
-            <EditableText
-              as="span"
-              className="text-sm font-light"
-              isEditing={isEditMode}
-              onSave={(text) => updateText('feature3', text)}
-            >
-              {currentTexts.feature3 || 'Автоматизация'}
-            </EditableText>
+          {/* Features */}
+          <div className="flex justify-center items-center space-x-16 mt-20 opacity-70">
+            <div className="flex items-center space-x-3 text-slate-500">
+              <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full"></div>
+              <span className="text-sm font-light">Голосовые AI-агенты</span>
+            </div>
+            <div className="flex items-center space-x-3 text-slate-500">
+              <div className="w-3 h-3 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-full"></div>
+              <span className="text-sm font-light">Речевая аналитика</span>
+            </div>
+            <div className="flex items-center space-x-3 text-slate-500">
+              <div className="w-3 h-3 bg-gradient-to-r from-blue-600 to-slate-600 rounded-full"></div>
+              <span className="text-sm font-light">Автоматизация</span>
+            </div>
           </div>
         </div>
       </div>
