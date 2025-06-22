@@ -70,25 +70,7 @@ const EditableBenefitsSlide = ({
           
           <div className="grid grid-cols-5 gap-4">
             {benefits.map((benefit, index) => <div key={index} className="relative">
-                <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 border border-slate-200/50 hover:border-blue-200 transition-all duration-500 hover:shadow-xl hover:shadow-blue-100/50 group">
-                  <div className="text-center space-y-4">
-                    <div className="w-16 h-16 mx-auto bg-gradient-to-r from-blue-100 to-cyan-100 rounded-2xl flex items-center justify-center group-hover:from-blue-200 group-hover:to-cyan-200 transition-all duration-300">
-                      <benefit.icon className="w-8 h-8 text-blue-600" />
-                    </div>
-                    
-                    <div className="space-y-2">
-                      <EditableText as="span" className="text-3xl font-light bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent block" isEditing={isEditMode} onSave={text => updateText(`stat${index}`, text)}>
-                        {currentTexts[`stat${index}`] || benefit.stat}
-                      </EditableText>
-                      <EditableText as="h3" className="text-sm font-medium text-slate-900 leading-tight" isEditing={isEditMode} onSave={text => updateText(`title${index}`, text)}>
-                        {currentTexts[`title${index}`] || benefit.title}
-                      </EditableText>
-                      <EditableText as="p" className="text-xs text-slate-600 leading-relaxed" isEditing={isEditMode} onSave={text => updateText(`description${index}`, text)}>
-                        {currentTexts[`description${index}`] || benefit.description}
-                      </EditableText>
-                    </div>
-                  </div>
-                </div>
+                
               </div>)}
           </div>
         </div>
