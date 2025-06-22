@@ -90,11 +90,6 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
     groupedBenefits.push(benefits.slice(i, i + 2));
   }
 
-  const groupedRealBenefits = [];
-  for (let i = 0; i < realBenefits.length; i += 2) {
-    groupedRealBenefits.push(realBenefits.slice(i, i + 2));
-  }
-
   const BenefitCard = ({ benefit, index }) => (
     <div className="bg-gradient-to-br from-white/80 to-slate-50/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 hover:border-blue-200/70 transition-all duration-500">
       <div className="flex items-start space-x-4">
@@ -272,16 +267,9 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
               <div className="max-w-full mx-auto px-4">
                 <Carousel className="w-full" opts={{ align: "start" }}>
                   <CarouselContent>
-                    {groupedRealBenefits.map((benefitPair, pairIndex) => (
-                      <CarouselItem key={pairIndex}>
-                        <div className="space-y-4">
-                          {benefitPair.map((benefit, benefitIndex) => {
-                            const actualIndex = pairIndex * 2 + benefitIndex;
-                            return (
-                              <RealBenefitCard key={actualIndex} benefit={benefit} index={actualIndex} />
-                            );
-                          })}
-                        </div>
+                    {realBenefits.map((benefit, index) => (
+                      <CarouselItem key={index}>
+                        <RealBenefitCard benefit={benefit} index={index} />
                       </CarouselItem>
                     ))}
                   </CarouselContent>
