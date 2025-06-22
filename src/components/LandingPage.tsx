@@ -4,7 +4,6 @@ import EditableTitleSlide from './presentation/EditableTitleSlide';
 import EditableProblemSlide from './presentation/EditableProblemSlide';
 import EditableSolutionSlide from './presentation/EditableSolutionSlide';
 import EditableEconomicsSlide from './presentation/EditableEconomicsSlide';
-import EditableBenefitsSlide from './presentation/EditableBenefitsSlide';
 import EditableComparisonSlide from './presentation/EditableComparisonSlide';
 import AutomationProcessesBlock from './AutomationProcessesBlock';
 import EditableCallToActionSlide from './presentation/EditableCallToActionSlide';
@@ -19,7 +18,6 @@ const LandingPage = () => {
       <EditableProblemSlide />
       <EditableSolutionSlide />
       <EditableEconomicsSlide />
-      <EditableBenefitsSlide />
       <EditableComparisonSlide />
       
       {/* Новый блок автоматизации */}
