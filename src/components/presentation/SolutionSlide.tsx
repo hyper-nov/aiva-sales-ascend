@@ -2,8 +2,12 @@
 import React from 'react';
 import PresentationSlide from '../PresentationSlide';
 import { Monitor, Zap, Shield, Star } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 const SolutionSlide = () => {
+  const isMobile = useIsMobile();
+
   const benefits = [
     {
       icon: Monitor,
@@ -30,6 +34,27 @@ const SolutionSlide = () => {
       result: "Вы управляете, а не спасаете бизнес"
     }
   ];
+
+  // Группируем преимущества по парам для мобильной карусели
+  const groupedBenefits = [];
+  for (let i = 0; i < benefits.length; i += 2) {
+    groupedBenefits.push(benefits.slice(i, i + 2));
+  }
+
+  const BenefitCard = ({ benefit, index }) => (
+    <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50">
+      <div className="flex items-start space-x-4">
+        <div className="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
+          <benefit.icon className="w-5 h-5 text-blue-600" />
+        </div>
+        <div className="space-y-2">
+          <h3 className="text-lg font-medium text-slate-900">{benefit.title}</h3>
+          <p className="text-sm text-slate-600">{benefit.description}</p>
+          <p className="text-sm text-blue-600 font-medium">→ {benefit.result}</p>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <PresentationSlide slideNumber={4} background="gradient">
@@ -86,23 +111,35 @@ const SolutionSlide = () => {
           </div>
         </div>
 
-        {/* Benefits grid */}
-        <div className="grid grid-cols-2 gap-6 max-w-6xl mx-auto">
-          {benefits.map((benefit, index) => (
-            <div key={index} className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50">
-              <div className="flex items-start space-x-4">
-                <div className="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <benefit.icon className="w-5 h-5 text-blue-600" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-lg font-medium text-slate-900">{benefit.title}</h3>
-                  <p className="text-sm text-slate-600">{benefit.description}</p>
-                  <p className="text-sm text-blue-600 font-medium">→ {benefit.result}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Benefits - responsive */}
+        {isMobile ? (
+          <div className="max-w-full mx-auto px-4">
+            <Carousel className="w-full" opts={{ align: "start" }}>
+              <CarouselContent>
+                {groupedBenefits.map((benefitPair, pairIndex) => (
+                  <CarouselItem key={pairIndex}>
+                    <div className="space-y-4">
+                      {benefitPair.map((benefit, benefitIndex) => {
+                        const actualIndex = pairIndex * 2 + benefitIndex;
+                        return (
+                          <BenefitCard key={actualIndex} benefit={benefit} index={actualIndex} />
+                        );
+                      })}
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {benefits.map((benefit, index) => (
+              <BenefitCard key={index} benefit={benefit} index={index} />
+            ))}
+          </div>
+        )}
 
         {/* Bottom conclusion */}
         <div className="text-center bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-8 max-w-4xl mx-auto border border-blue-100">
