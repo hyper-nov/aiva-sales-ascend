@@ -23,7 +23,7 @@ const PresentationSlide = ({
 
   return (
     <div className={cn(
-      "w-full min-h-screen flex flex-col justify-start items-center relative overflow-hidden py-16",
+      "w-full min-h-screen flex flex-col justify-center items-center relative overflow-hidden py-12 px-4 sm:px-8",
       backgroundStyles[background],
       className
     )}>
@@ -42,7 +42,7 @@ const PresentationSlide = ({
            }}>
       </div>
       
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-8 py-8">
+      <div className="relative z-10 w-full max-w-7xl mx-auto">
         {children}
       </div>
       
