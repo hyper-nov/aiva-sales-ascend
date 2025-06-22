@@ -47,18 +47,6 @@ const EditableBenefitsSlide = ({
             </>}
           </EditableText>
         </div>
-
-        {/* Bottom conclusion */}
-        <div className="max-w-4xl mx-auto text-center">
-          <EditableText
-            as="p"
-            className="text-xl text-slate-600 font-light"
-            isEditing={isEditMode}
-            onSave={text => updateText('conclusion', text)}
-          >
-            {currentTexts.conclusion || 'Ваш бизнес начинает зарабатывать больше, тратить меньше и видеть всё насквозь — без сложного внедрения и долгих "танцев" с персоналом.'}
-          </EditableText>
-        </div>
       </div>
     </PresentationSlide>
   );
