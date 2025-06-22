@@ -94,6 +94,12 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
     groupedBenefits.push(benefits.slice(i, i + 2));
   }
 
+  // Группируем реальные преимущества по парам для мобильной карусели  
+  const groupedRealBenefits = [];
+  for (let i = 0; i < realBenefits.length; i += 2) {
+    groupedRealBenefits.push(realBenefits.slice(i, i + 2));
+  }
+
   return (
     <PresentationSlide slideNumber={4} background="gradient">
       <div className="relative min-h-screen py-16 overflow-hidden">
@@ -175,27 +181,33 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
               <div className="w-32 h-px bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
             </div>
 
-            {/* Real benefits - mobile показывает по одному элементу */}
+            {/* Real benefits - единый стиль карусели по 2 элемента */}
             {isMobile ? (
               <div className="max-w-full mx-auto px-4">
-                <Carousel className="w-full" opts={{ align: "center", loop: false }}>
-                  <CarouselContent className="-ml-2 md:-ml-4">
-                    {realBenefits.map((benefit, index) => (
-                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
-                        <div className="p-1">
-                          <RealBenefitCard 
-                            benefit={benefit} 
-                            index={index}
-                            isEditMode={isEditMode}
-                            currentTexts={currentTexts}
-                            updateText={updateText}
-                          />
+                <Carousel className="w-full" opts={{ align: "start" }}>
+                  <CarouselContent>
+                    {groupedRealBenefits.map((benefitPair, pairIndex) => (
+                      <CarouselItem key={pairIndex}>
+                        <div className="space-y-4">
+                          {benefitPair.map((benefit, benefitIndex) => {
+                            const actualIndex = pairIndex * 2 + benefitIndex;
+                            return (
+                              <RealBenefitCard 
+                                key={actualIndex}
+                                benefit={benefit} 
+                                index={actualIndex}
+                                isEditMode={isEditMode}
+                                currentTexts={currentTexts}
+                                updateText={updateText}
+                              />
+                            );
+                          })}
                         </div>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious className="left-2" />
-                  <CarouselNext className="right-2" />
+                  <CarouselPrevious />
+                  <CarouselNext />
                 </Carousel>
               </div>
             ) : (
