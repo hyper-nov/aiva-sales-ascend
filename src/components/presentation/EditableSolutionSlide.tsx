@@ -66,7 +66,7 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
       groups.push(benefits.slice(i, i + 2));
     }
     return groups;
-  }, [benefits]);
+  }, []);
 
   return (
     <PresentationSlide slideNumber={4} background="gradient">
