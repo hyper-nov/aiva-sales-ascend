@@ -262,35 +262,36 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
               <div className="w-32 h-px bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
             </div>
 
-            {/* Real benefits - responsive */}
+            {/* Real benefits - mobile показывает по одному элементу */}
             {isMobile ? (
               <div className="max-w-full mx-auto px-4">
-                <Carousel className="w-full" opts={{ align: "start" }}>
-                  <CarouselContent>
+                <Carousel className="w-full" opts={{ align: "center", loop: false }}>
+                  <CarouselContent className="-ml-2 md:-ml-4">
                     {realBenefits.map((benefit, index) => (
-                      <CarouselItem key={index}>
-                        <RealBenefitCard benefit={benefit} index={index} />
+                      <CarouselItem key={index} className="pl-2 md:pl-4 basis-full">
+                        <div className="p-1">
+                          <RealBenefitCard benefit={benefit} index={index} />
+                        </div>
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
+                  <CarouselPrevious className="left-2" />
+                  <CarouselNext className="right-2" />
                 </Carousel>
               </div>
             ) : (
-              <div className="grid grid-cols-3 gap-6 max-w-6xl mx-auto">
-                {realBenefits.slice(0, 3).map((benefit, index) => (
-                  <RealBenefitCard key={index} benefit={benefit} index={index} />
-                ))}
-              </div>
-            )}
-
-            {!isMobile && (
-              <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
-                {realBenefits.slice(3).map((benefit, index) => (
-                  <RealBenefitCard key={index + 3} benefit={benefit} index={index + 3} />
-                ))}
-              </div>
+              <>
+                <div className="grid grid-cols-3 gap-6 max-w-6xl mx-auto">
+                  {realBenefits.slice(0, 3).map((benefit, index) => (
+                    <RealBenefitCard key={index} benefit={benefit} index={index} />
+                  ))}
+                </div>
+                <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+                  {realBenefits.slice(3).map((benefit, index) => (
+                    <RealBenefitCard key={index + 3} benefit={benefit} index={index + 3} />
+                  ))}
+                </div>
+              </>
             )}
           </div>
 
