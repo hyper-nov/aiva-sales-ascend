@@ -72,22 +72,22 @@ const ContactModal = ({ isOpen, onClose, type }: ContactModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md max-w-[90vw] mx-auto">
         <DialogHeader>
           <DialogTitle className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-100 to-purple-100 rounded-xl flex items-center justify-center">
               <config.icon className="w-5 h-5 text-blue-600" />
             </div>
             <div>
-              <h3 className="text-xl font-semibold">{config.title}</h3>
-              <p className="text-sm text-slate-600 font-normal">{config.subtitle}</p>
+              <h3 className="text-lg sm:text-xl font-semibold">{config.title}</h3>
+              <p className="text-xs sm:text-sm text-slate-600 font-normal">{config.subtitle}</p>
             </div>
           </DialogTitle>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit} className="space-y-6 mt-6">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 mt-4 sm:mt-6">
           <div>
-            <Label htmlFor="name" className="text-slate-700">
+            <Label htmlFor="name" className="text-slate-700 text-sm sm:text-base">
               Имя *
             </Label>
             <Input
@@ -96,13 +96,13 @@ const ContactModal = ({ isOpen, onClose, type }: ContactModalProps) => {
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
               placeholder="Ваше имя"
-              className="mt-2"
+              className="mt-2 text-sm sm:text-base"
               required
             />
           </div>
 
           <div>
-            <Label htmlFor="contact" className="text-slate-700">
+            <Label htmlFor="contact" className="text-slate-700 text-sm sm:text-base">
               {config.contactLabel}
             </Label>
             <Input
@@ -111,7 +111,7 @@ const ContactModal = ({ isOpen, onClose, type }: ContactModalProps) => {
               value={formData.contact}
               onChange={(e) => setFormData({...formData, contact: e.target.value})}
               placeholder={config.contactPlaceholder}
-              className="mt-2"
+              className="mt-2 text-sm sm:text-base"
               required
             />
           </div>
@@ -123,7 +123,7 @@ const ContactModal = ({ isOpen, onClose, type }: ContactModalProps) => {
               onCheckedChange={(checked) => setFormData({...formData, agreed: checked as boolean})}
               className="mt-1"
             />
-            <Label htmlFor="agreement" className="text-sm text-slate-600 leading-relaxed">
+            <Label htmlFor="agreement" className="text-xs sm:text-sm text-slate-600 leading-relaxed">
               Я согласен на обработку персональных данных в соответствии с{' '}
               <span className="text-blue-600 cursor-pointer hover:underline">
                 Политикой конфиденциальности
@@ -133,7 +133,7 @@ const ContactModal = ({ isOpen, onClose, type }: ContactModalProps) => {
 
           <Button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white py-3 rounded-xl font-medium transition-all duration-300"
+            className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white py-2 sm:py-3 rounded-xl font-medium transition-all duration-300 text-sm sm:text-base"
           >
             Отправить заявку
           </Button>
