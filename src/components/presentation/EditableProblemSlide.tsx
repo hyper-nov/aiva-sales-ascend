@@ -6,7 +6,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { useIsMobile } from '../../hooks/use-mobile';
 import EditableText from '../EditableText';
 
-interface EditableProblemSl ideProps {
+interface EditableProblemSlideProps {
   isEditMode?: boolean;
   slideTexts?: Record<string, Record<string, string>>;
   setSlideTexts?: (texts: Record<string, Record<string, string>>) => void;
@@ -56,7 +56,7 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
     }
   ];
 
-  const ProblemCard = ({ problem, index }) => (
+  const ProblemCard = ({ problem, index }: { problem: any; index: number }) => (
     <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-slate-200/50 hover:border-red-200 transition-all duration-500 hover:shadow-xl hover:shadow-red-100/50 h-full">
       <div className="space-y-4 sm:space-y-6">
         {/* Mobile: stat and icon in row, desktop: column */}
