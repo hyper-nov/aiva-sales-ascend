@@ -7,7 +7,6 @@ import { useIsMobile } from '../../hooks/use-mobile';
 import SolutionHeader from './solution/SolutionHeader';
 import SolutionVisualization from './solution/SolutionVisualization';
 import BenefitCard from './solution/BenefitCard';
-import RealBenefitCard from './solution/RealBenefitCard';
 import SolutionConclusion from './solution/SolutionConclusion';
 
 interface EditableSolutionSlideProps {
@@ -60,44 +59,10 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
     }
   ];
 
-  const realBenefits = [
-    {
-      metric: "+25%",
-      title: "к конверсии лидов в продажи",
-      description: "За счет того, что ни одна заявка не пропущена, каждый диалог контролируется"
-    },
-    {
-      metric: "100%",
-      title: "прозрачности и контроля",
-      description: "Руководитель видит все переговоры и KPI в реальном времени"
-    },
-    {
-      metric: "2x",
-      title: "сокращение затрат",
-      description: "Экономия ФОТ, отсутствие затрат на обучение, замену и текучку"
-    },
-    {
-      metric: "AI",
-      title: "интерактивное обучение",
-      description: "AI-коуч выявляет слабые стороны и даёт рекомендации в реальном времени"
-    },
-    {
-      metric: "∞",
-      title: "мгновенное масштабирование",
-      description: "Добавление новых AI-агентов без поиска людей и перестройки процессов"
-    }
-  ];
-
   // Группируем преимущества по парам для мобильной карусели
   const groupedBenefits = [];
   for (let i = 0; i < benefits.length; i += 2) {
     groupedBenefits.push(benefits.slice(i, i + 2));
-  }
-
-  // Группируем реальные преимущества по парам для мобильной карусели  
-  const groupedRealBenefits = [];
-  for (let i = 0; i < realBenefits.length; i += 2) {
-    groupedRealBenefits.push(realBenefits.slice(i, i + 2));
   }
 
   return (
@@ -171,74 +136,6 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
               ))}
             </div>
           )}
-
-          {/* Real benefits section */}
-          <div className="space-y-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-light text-slate-900 mb-2">
-                Что получает ваш бизнес уже в первый месяц
-              </h2>
-              <div className="w-32 h-px bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
-            </div>
-
-            {/* Real benefits - единый стиль карусели по 2 элемента */}
-            {isMobile ? (
-              <div className="max-w-full mx-auto px-4">
-                <Carousel className="w-full" opts={{ align: "start" }}>
-                  <CarouselContent>
-                    {groupedRealBenefits.map((benefitPair, pairIndex) => (
-                      <CarouselItem key={pairIndex}>
-                        <div className="space-y-4">
-                          {benefitPair.map((benefit, benefitIndex) => {
-                            const actualIndex = pairIndex * 2 + benefitIndex;
-                            return (
-                              <RealBenefitCard 
-                                key={actualIndex}
-                                benefit={benefit} 
-                                index={actualIndex}
-                                isEditMode={isEditMode}
-                                currentTexts={currentTexts}
-                                updateText={updateText}
-                              />
-                            );
-                          })}
-                        </div>
-                      </CarouselItem>
-                    ))}
-                  </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
-                </Carousel>
-              </div>
-            ) : (
-              <>
-                <div className="grid grid-cols-3 gap-6 max-w-6xl mx-auto">
-                  {realBenefits.slice(0, 3).map((benefit, index) => (
-                    <RealBenefitCard 
-                      key={index} 
-                      benefit={benefit} 
-                      index={index}
-                      isEditMode={isEditMode}
-                      currentTexts={currentTexts}
-                      updateText={updateText}
-                    />
-                  ))}
-                </div>
-                <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
-                  {realBenefits.slice(3).map((benefit, index) => (
-                    <RealBenefitCard 
-                      key={index + 3} 
-                      benefit={benefit} 
-                      index={index + 3}
-                      isEditMode={isEditMode}
-                      currentTexts={currentTexts}
-                      updateText={updateText}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
 
           {/* Bottom conclusion */}
           <SolutionConclusion 
