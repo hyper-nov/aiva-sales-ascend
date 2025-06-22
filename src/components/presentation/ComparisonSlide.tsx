@@ -47,35 +47,35 @@ const ComparisonSlide = () => {
   ];
 
   const ComparisonCard = ({ comparison, index }) => (
-    <div className="space-y-6">
+    <div className="space-y-4">
       {/* Classic section */}
-      <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200">
-        <div className="text-center mb-4">
-          <h3 className="text-lg font-medium text-slate-600">Классический отдел</h3>
+      <div className="bg-slate-50/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-slate-200">
+        <div className="text-center mb-3 sm:mb-4">
+          <h3 className="text-base sm:text-lg font-medium text-slate-600">Классический отдел</h3>
         </div>
-        <div className="flex items-start space-x-4">
-          <div className="w-10 h-10 bg-slate-400 rounded-xl flex items-center justify-center flex-shrink-0">
-            <XCircle className="w-5 h-5 text-white" />
+        <div className="flex items-start space-x-3 sm:space-x-4">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-400 rounded-xl flex items-center justify-center flex-shrink-0">
+            <XCircle className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
-          <div className="space-y-2">
-            <h4 className="text-base font-medium text-slate-700">{comparison.classic}</h4>
-            <p className="text-sm text-slate-600">{comparison.classicDetail}</p>
+          <div className="space-y-1 sm:space-y-2">
+            <h4 className="text-sm sm:text-base font-medium text-slate-700">{comparison.classic}</h4>
+            <p className="text-xs sm:text-sm text-slate-600">{comparison.classicDetail}</p>
           </div>
         </div>
       </div>
 
       {/* AIVA section */}
-      <div className="bg-gradient-to-r from-blue-50 to-cyan-50/80 backdrop-blur-sm rounded-2xl p-6 border border-blue-200/50">
-        <div className="text-center mb-4">
-          <h3 className="text-lg font-medium bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">AIVA</h3>
+      <div className="bg-gradient-to-r from-blue-50 to-cyan-50/80 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-blue-200/50">
+        <div className="text-center mb-3 sm:mb-4">
+          <h3 className="text-base sm:text-lg font-medium bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">AIVA</h3>
         </div>
-        <div className="flex items-start space-x-4">
-          <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
-            <comparison.icon className="w-5 h-5 text-white" />
+        <div className="flex items-start space-x-3 sm:space-x-4">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center flex-shrink-0">
+            <comparison.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           </div>
-          <div className="space-y-2">
-            <h4 className="text-base font-medium text-slate-900">{comparison.aiva}</h4>
-            <p className="text-sm text-blue-700">{comparison.aivaDetail}</p>
+          <div className="space-y-1 sm:space-y-2">
+            <h4 className="text-sm sm:text-base font-medium text-slate-900">{comparison.aiva}</h4>
+            <p className="text-xs sm:text-sm text-blue-700">{comparison.aivaDetail}</p>
           </div>
         </div>
       </div>
@@ -96,7 +96,7 @@ const ComparisonSlide = () => {
 
         {/* Responsive comparison */}
         {isMobile ? (
-          <div className="max-w-md mx-auto">
+          <div className="max-w-sm mx-auto">
             <Carousel className="w-full">
               <CarouselContent>
                 {comparisons.map((comparison, index) => (

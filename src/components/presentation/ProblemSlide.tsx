@@ -2,8 +2,12 @@
 import React from 'react';
 import PresentationSlide from '../PresentationSlide';
 import { Clock, Users, Monitor, Star } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 const ProblemSlide = () => {
+  const isMobile = useIsMobile();
+  
   const problems = [
     {
       icon: Clock,
@@ -31,6 +35,25 @@ const ProblemSlide = () => {
     }
   ];
 
+  const ProblemCard = ({ problem, index }) => (
+    <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-slate-200/50 hover:border-red-200 transition-all duration-500 hover:shadow-xl hover:shadow-red-100/50 h-full">
+      <div className="space-y-4 sm:space-y-6">
+        {/* Mobile: stat and icon in row, desktop: column */}
+        <div className="flex items-center space-x-4 sm:flex-col sm:items-start sm:space-x-0 sm:space-y-4">
+          <div className="w-16 h-16 bg-gradient-to-r from-red-50 to-red-100 rounded-2xl flex items-center justify-center group-hover:from-red-100 group-hover:to-red-200 transition-all duration-300 flex-shrink-0">
+            <problem.icon className="w-8 h-8 text-red-500" />
+          </div>
+          <div className="text-4xl sm:text-5xl font-light text-red-500">{problem.stat}</div>
+        </div>
+        
+        <div className="space-y-3">
+          <div className="text-lg sm:text-xl text-slate-700 font-light">{problem.description}</div>
+          <p className="text-sm sm:text-base text-slate-600 leading-relaxed">{problem.detail}</p>
+        </div>
+      </div>
+    </div>
+  );
+
   return (
     <PresentationSlide slideNumber={2} background="default">
       <div className="w-full h-auto py-8 sm:py-16 space-y-12 sm:space-y-20 px-4 sm:px-6 lg:px-8">
@@ -44,33 +67,30 @@ const ProblemSlide = () => {
           <p className="text-lg sm:text-xl lg:text-2xl text-slate-600 font-light">Факты, которые болят</p>
         </div>
 
-        {/* Problems grid - responsive */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-7xl mx-auto">
-          {problems.map((problem, index) => (
-            <div key={index} className="group">
-              <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-6 sm:p-8 lg:p-10 border border-slate-200/50 hover:border-red-200 transition-all duration-500 hover:shadow-xl hover:shadow-red-100/50 h-full">
-                {/* Mobile layout: icon and stat on top, text below */}
-                <div className="flex flex-col sm:flex-row sm:items-start space-y-4 sm:space-y-0 sm:space-x-6 lg:space-x-8">
-                  <div className="flex items-center space-x-4 sm:flex-col sm:space-x-0 sm:items-start">
-                    <div className="flex-shrink-0 relative">
-                      <div className="w-16 h-16 sm:w-18 sm:h-18 bg-gradient-to-r from-red-50 to-red-100 rounded-2xl flex items-center justify-center group-hover:from-red-100 group-hover:to-red-200 transition-all duration-300">
-                        <problem.icon className="w-8 h-8 sm:w-9 sm:h-9 text-red-500" />
-                      </div>
-                    </div>
-                    <div className="sm:mt-4">
-                      <span className="text-4xl sm:text-5xl font-light text-red-500">{problem.stat}</span>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-3 sm:space-y-4 flex-1">
-                    <span className="text-lg sm:text-xl text-slate-700 font-light block">{problem.description}</span>
-                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed">{problem.detail}</p>
-                  </div>
-                </div>
+        {/* Problems - responsive */}
+        {isMobile ? (
+          <div className="max-w-sm mx-auto">
+            <Carousel className="w-full">
+              <CarouselContent>
+                {problems.map((problem, index) => (
+                  <CarouselItem key={index}>
+                    <ProblemCard problem={problem} index={index} />
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-7xl mx-auto">
+            {problems.map((problem, index) => (
+              <div key={index} className="group">
+                <ProblemCard problem={problem} index={index} />
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
 
         {/* Bottom accent */}
         <div className="text-center pt-4 sm:pt-8">
