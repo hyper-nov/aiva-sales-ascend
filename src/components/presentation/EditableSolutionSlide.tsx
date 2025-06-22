@@ -69,7 +69,7 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
   }, []);
 
   return (
-    <PresentationSlide slideNumber={4} background="gradient">
+    <PresentationSlide background="gradient">
       <div className="relative min-h-screen py-16 overflow-hidden">
         {/* Futuristic background */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">

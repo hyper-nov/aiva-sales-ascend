@@ -30,8 +30,8 @@ const EditableBenefitsSlide = ({
   };
 
   return (
-    <PresentationSlide slideNumber={6} background="gradient">
-      <div className="space-y-8">
+    <PresentationSlide background="gradient">
+      <div className="space-y-12">
         {/* Header */}
         <div className="text-center space-y-6">
           <EditableText
