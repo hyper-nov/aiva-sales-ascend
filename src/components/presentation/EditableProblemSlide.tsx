@@ -12,6 +12,18 @@ interface EditableProblemSlideProps {
   setSlideTexts?: (texts: Record<string, Record<string, string>>) => void;
 }
 
+interface Problem {
+  icon: React.ComponentType<{ className?: string }>;
+  stat: string;
+  description: string;
+  detail: string;
+}
+
+interface ProblemCardProps {
+  problem: Problem;
+  index: number;
+}
+
 const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts }: EditableProblemSlideProps) => {
   const isMobile = useIsMobile();
   const slideId = 'problem-slide';
@@ -29,7 +41,7 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
     }
   };
   
-  const problems = [
+  const problems: Problem[] = [
     {
       icon: Clock,
       stat: "22%",
@@ -56,7 +68,7 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
     }
   ];
 
-  const ProblemCard = ({ problem, index }: { problem: any; index: number }) => (
+  const ProblemCard = ({ problem, index }: ProblemCardProps) => (
     <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-6 sm:p-8 border border-slate-200/50 hover:border-red-200 transition-all duration-500 hover:shadow-xl hover:shadow-red-100/50 h-full">
       <div className="space-y-4 sm:space-y-6">
         {/* Mobile: stat and icon in row, desktop: column */}
@@ -96,6 +108,12 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
     </div>
   );
 
+  // Группируем проблемы по парам для мобильной карусели
+  const groupedProblems = [];
+  for (let i = 0; i < problems.length; i += 2) {
+    groupedProblems.push(problems.slice(i, i + 2));
+  }
+
   return (
     <PresentationSlide slideNumber={2} background="default">
       <div className="w-full h-auto py-8 sm:py-16 space-y-12 sm:space-y-20 px-4 sm:px-6 lg:px-8">
@@ -121,12 +139,21 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
 
         {/* Problems - responsive */}
         {isMobile ? (
-          <div className="max-w-sm mx-auto">
-            <Carousel className="w-full">
+          <div className="max-w-full mx-auto">
+            <Carousel className="w-full" opts={{ align: "start" }}>
               <CarouselContent>
-                {problems.map((problem, index) => (
-                  <CarouselItem key={index}>
-                    <ProblemCard problem={problem} index={index} />
+                {groupedProblems.map((problemPair, pairIndex) => (
+                  <CarouselItem key={pairIndex}>
+                    <div className="grid grid-cols-1 gap-4 space-y-4">
+                      {problemPair.map((problem, problemIndex) => {
+                        const actualIndex = pairIndex * 2 + problemIndex;
+                        return (
+                          <div key={actualIndex} className="group">
+                            <ProblemCard problem={problem} index={actualIndex} />
+                          </div>
+                        );
+                      })}
+                    </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>

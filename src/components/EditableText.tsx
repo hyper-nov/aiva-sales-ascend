@@ -18,8 +18,21 @@ const EditableText = ({
   onSave 
 }: EditableTextProps) => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [text, setText] = useState(children?.toString() || '');
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [text, setText] = useState(() => {
+    if (typeof children === 'string') return children;
+    if (typeof children === 'number') return children.toString();
+    return '';
+  });
+
+  useEffect(() => {
+    if (typeof children === 'string') {
+      setText(children);
+    } else if (typeof children === 'number') {
+      setText(children.toString());
+    } else {
+      setText('');
+    }
+  }, [children]);
 
   useEffect(() => {
     if (isEditMode && textareaRef.current) {
@@ -27,6 +40,8 @@ const EditableText = ({
       textareaRef.current.select();
     }
   }, [isEditMode]);
+
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const handleClick = () => {
     if (isEditing) {
@@ -45,7 +60,7 @@ const EditableText = ({
     }
     if (e.key === 'Escape') {
       setIsEditMode(false);
-      setText(children?.toString() || '');
+      setText(typeof children === 'string' ? children : children?.toString() || '');
     }
   };
 
