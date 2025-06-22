@@ -3,6 +3,8 @@ import React from 'react';
 import PresentationSlide from '../PresentationSlide';
 import EditableText from '../EditableText';
 import { Monitor, Zap, Shield, Star, TrendingUp } from 'lucide-react';
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
+import { useIsMobile } from '../../hooks/use-mobile';
 
 interface EditableSolutionSlideProps {
   isEditMode?: boolean;
@@ -11,6 +13,7 @@ interface EditableSolutionSlideProps {
 }
 
 const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTexts }: EditableSolutionSlideProps) => {
+  const isMobile = useIsMobile();
   const slideId = 'solution-slide';
   const currentTexts = slideTexts[slideId] || {};
 
@@ -52,6 +55,107 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
       result: "Возвращаете себе спокойствие"
     }
   ];
+
+  const realBenefits = [
+    {
+      metric: "+25%",
+      title: "к конверсии лидов в продажи",
+      description: "За счет того, что ни одна заявка не пропущена, каждый диалог контролируется"
+    },
+    {
+      metric: "100%",
+      title: "прозрачности и контроля",
+      description: "Руководитель видит все переговоры и KPI в реальном времени"
+    },
+    {
+      metric: "2x",
+      title: "сокращение затрат",
+      description: "Экономия ФОТ, отсутствие затрат на обучение, замену и текучку"
+    },
+    {
+      metric: "AI",
+      title: "интерактивное обучение",
+      description: "AI-коуч выявляет слабые стороны и даёт рекомендации в реальном времени"
+    },
+    {
+      metric: "∞",
+      title: "мгновенное масштабирование",
+      description: "Добавление новых AI-агентов без поиска людей и перестройки процессов"
+    }
+  ];
+
+  // Группируем преимущества по парам для мобильной карусели
+  const groupedBenefits = [];
+  for (let i = 0; i < benefits.length; i += 2) {
+    groupedBenefits.push(benefits.slice(i, i + 2));
+  }
+
+  const groupedRealBenefits = [];
+  for (let i = 0; i < realBenefits.length; i += 2) {
+    groupedRealBenefits.push(realBenefits.slice(i, i + 2));
+  }
+
+  const BenefitCard = ({ benefit, index }) => (
+    <div className="bg-gradient-to-br from-white/80 to-slate-50/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 hover:border-blue-200/70 transition-all duration-500">
+      <div className="flex items-start space-x-4">
+        <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl flex items-center justify-center flex-shrink-0">
+          <benefit.icon className="w-6 h-6 text-blue-600" />
+        </div>
+        <div className="space-y-3">
+          <EditableText
+            as="h3"
+            className="text-lg font-medium text-slate-900"
+            isEditing={isEditMode}
+            onSave={(text) => updateText(`benefitTitle${index}`, text)}
+          >
+            {currentTexts[`benefitTitle${index}`] || benefit.title}
+          </EditableText>
+          <EditableText
+            as="p"
+            className="text-sm text-slate-600"
+            isEditing={isEditMode}
+            onSave={(text) => updateText(`benefitDescription${index}`, text)}
+          >
+            {currentTexts[`benefitDescription${index}`] || benefit.description}
+          </EditableText>
+          <EditableText
+            as="p"
+            className="text-sm text-blue-600 font-medium"
+            isEditing={isEditMode}
+            onSave={(text) => updateText(`benefitResult${index}`, text)}
+          >
+            {currentTexts[`benefitResult${index}`] || `→ ${benefit.result}`}
+          </EditableText>
+        </div>
+      </div>
+    </div>
+  );
+
+  const RealBenefitCard = ({ benefit, index }) => (
+    <div className="bg-gradient-to-br from-white/90 to-blue-50/50 backdrop-blur-sm rounded-3xl p-6 border border-blue-200/30 hover:border-blue-300/50 transition-all duration-500">
+      <div className="text-center space-y-3">
+        <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+          {benefit.metric}
+        </div>
+        <EditableText
+          as="h3"
+          className="text-lg font-medium text-slate-900"
+          isEditing={isEditMode}
+          onSave={(text) => updateText(`realBenefitTitle${index}`, text)}
+        >
+          {currentTexts[`realBenefitTitle${index}`] || benefit.title}
+        </EditableText>
+        <EditableText
+          as="p"
+          className="text-sm text-slate-600"
+          isEditing={isEditMode}
+          onSave={(text) => updateText(`realBenefitDescription${index}`, text)}
+        >
+          {currentTexts[`realBenefitDescription${index}`] || benefit.description}
+        </EditableText>
+      </div>
+    </div>
+  );
 
   return (
     <PresentationSlide slideNumber={4} background="gradient">
@@ -124,43 +228,82 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
             </EditableText>
           </div>
 
-          {/* Benefits grid */}
-          <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {benefits.map((benefit, index) => (
-              <div key={index} className="bg-gradient-to-br from-white/80 to-slate-50/80 backdrop-blur-sm rounded-3xl p-8 border border-slate-200/50 hover:border-blue-200/70 transition-all duration-500">
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                    <benefit.icon className="w-6 h-6 text-blue-600" />
-                  </div>
-                  <div className="space-y-3">
-                    <EditableText
-                      as="h3"
-                      className="text-lg font-medium text-slate-900"
-                      isEditing={isEditMode}
-                      onSave={(text) => updateText(`benefitTitle${index}`, text)}
-                    >
-                      {currentTexts[`benefitTitle${index}`] || benefit.title}
-                    </EditableText>
-                    <EditableText
-                      as="p"
-                      className="text-sm text-slate-600"
-                      isEditing={isEditMode}
-                      onSave={(text) => updateText(`benefitDescription${index}`, text)}
-                    >
-                      {currentTexts[`benefitDescription${index}`] || benefit.description}
-                    </EditableText>
-                    <EditableText
-                      as="p"
-                      className="text-sm text-blue-600 font-medium"
-                      isEditing={isEditMode}
-                      onSave={(text) => updateText(`benefitResult${index}`, text)}
-                    >
-                      {currentTexts[`benefitResult${index}`] || `→ ${benefit.result}`}
-                    </EditableText>
-                  </div>
-                </div>
+          {/* Benefits grid - responsive */}
+          {isMobile ? (
+            <div className="max-w-full mx-auto px-4">
+              <Carousel className="w-full" opts={{ align: "start" }}>
+                <CarouselContent>
+                  {groupedBenefits.map((benefitPair, pairIndex) => (
+                    <CarouselItem key={pairIndex}>
+                      <div className="space-y-4">
+                        {benefitPair.map((benefit, benefitIndex) => {
+                          const actualIndex = pairIndex * 2 + benefitIndex;
+                          return (
+                            <BenefitCard key={actualIndex} benefit={benefit} index={actualIndex} />
+                          );
+                        })}
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
+              {benefits.map((benefit, index) => (
+                <BenefitCard key={index} benefit={benefit} index={index} />
+              ))}
+            </div>
+          )}
+
+          {/* Real benefits section */}
+          <div className="space-y-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-light text-slate-900 mb-2">
+                Что получает ваш бизнес уже в первый месяц
+              </h2>
+              <div className="w-32 h-px bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
+            </div>
+
+            {/* Real benefits - responsive */}
+            {isMobile ? (
+              <div className="max-w-full mx-auto px-4">
+                <Carousel className="w-full" opts={{ align: "start" }}>
+                  <CarouselContent>
+                    {groupedRealBenefits.map((benefitPair, pairIndex) => (
+                      <CarouselItem key={pairIndex}>
+                        <div className="space-y-4">
+                          {benefitPair.map((benefit, benefitIndex) => {
+                            const actualIndex = pairIndex * 2 + benefitIndex;
+                            return (
+                              <RealBenefitCard key={actualIndex} benefit={benefit} index={actualIndex} />
+                            );
+                          })}
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
               </div>
-            ))}
+            ) : (
+              <div className="grid grid-cols-3 gap-6 max-w-6xl mx-auto">
+                {realBenefits.slice(0, 3).map((benefit, index) => (
+                  <RealBenefitCard key={index} benefit={benefit} index={index} />
+                ))}
+              </div>
+            )}
+
+            {!isMobile && (
+              <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+                {realBenefits.slice(3).map((benefit, index) => (
+                  <RealBenefitCard key={index + 3} benefit={benefit} index={index + 3} />
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Bottom conclusion */}
