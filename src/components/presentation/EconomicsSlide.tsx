@@ -1,11 +1,12 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import PresentationSlide from '../PresentationSlide';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '../ui/carousel';
 import { useIsMobile } from '../../hooks/use-mobile';
 
 const EconomicsSlide = () => {
   const isMobile = useIsMobile();
+  const [currentView, setCurrentView] = useState(0); // 0 = До AIVA, 1 = С AIVA
 
   const beforeCosts = [
     { item: "ФОТ отдела (8 менеджеров)", amount: "12 000 000" },
@@ -74,29 +75,49 @@ const EconomicsSlide = () => {
 
         {/* Responsive layout */}
         {isMobile ? (
-          <div className="max-w-md mx-auto">
-            <Carousel className="w-full">
-              <CarouselContent>
-                <CarouselItem>
-                  <CostCard 
-                    title="До AIVA" 
-                    costs={beforeCosts} 
-                    total={totalBefore}
-                    isAfter={false}
-                  />
-                </CarouselItem>
-                <CarouselItem>
-                  <CostCard 
-                    title="С AIVA" 
-                    costs={afterCosts} 
-                    total={totalAfter}
-                    isAfter={true}
-                  />
-                </CarouselItem>
-              </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
-            </Carousel>
+          <div className="max-w-md mx-auto space-y-6">
+            {/* Toggle buttons */}
+            <div className="flex bg-slate-100 rounded-2xl p-1">
+              <button
+                onClick={() => setCurrentView(0)}
+                className={`flex-1 py-3 px-4 text-sm font-medium rounded-xl transition-all duration-300 ${
+                  currentView === 0 
+                    ? 'bg-white text-slate-900 shadow-sm' 
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                До AIVA
+              </button>
+              <button
+                onClick={() => setCurrentView(1)}
+                className={`flex-1 py-3 px-4 text-sm font-medium rounded-xl transition-all duration-300 ${
+                  currentView === 1 
+                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-sm' 
+                    : 'text-slate-600 hover:text-slate-900'
+                }`}
+              >
+                С AIVA
+              </button>
+            </div>
+
+            {/* Content */}
+            <div className="transition-all duration-500">
+              {currentView === 0 ? (
+                <CostCard 
+                  title="До AIVA" 
+                  costs={beforeCosts} 
+                  total={totalBefore}
+                  isAfter={false}
+                />
+              ) : (
+                <CostCard 
+                  title="С AIVA" 
+                  costs={afterCosts} 
+                  total={totalAfter}
+                  isAfter={true}
+                />
+              )}
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-2 gap-12 max-w-6xl mx-auto items-start">

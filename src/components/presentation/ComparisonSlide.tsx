@@ -111,20 +111,6 @@ const ComparisonSlide = () => {
           </div>
         ) : (
           <div className="max-w-7xl mx-auto space-y-6">
-            {/* Header row */}
-            <div className="grid grid-cols-2 gap-12 mb-8">
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-blue-100 to-cyan-100 rounded-3xl p-6 border border-blue-200">
-                  <h2 className="text-2xl font-light bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">AIVA</h2>
-                </div>
-              </div>
-              <div className="text-center">
-                <div className="bg-gradient-to-r from-slate-100 to-slate-50 rounded-3xl p-6 border border-slate-300">
-                  <h2 className="text-2xl font-light text-slate-600">Классический отдел</h2>
-                </div>
-              </div>
-            </div>
-
             {/* Comparison rows */}
             {comparisons.map((comparison, index) => (
               <div key={index} className="grid grid-cols-2 gap-12 items-center">
