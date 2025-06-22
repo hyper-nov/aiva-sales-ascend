@@ -119,14 +119,9 @@ const EditableEconomicsSlide = ({ isEditMode = false, slideTexts = {}, setSlideT
             isEditing={isEditMode}
             onSave={(text) => updateText('title', text)}
           >
-            {currentTexts.title || (
-              <>
-                Честная математика:
-                <br />
-                <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent font-normal">сколько ваш бизнес экономит с AIVA</span>
-              </>
-            )}
+            {currentTexts.title || "Честная математика: сколько ваш бизнес экономит с AIVA"}
           </EditableText>
+          <div className="w-24 sm:w-32 lg:w-48 h-px bg-gradient-to-r from-blue-500 to-purple-500 mx-auto"></div>
         </div>
 
         {/* Responsive layout */}
@@ -302,11 +297,7 @@ const EditableEconomicsSlide = ({ isEditMode = false, slideTexts = {}, setSlideT
                 isEditing={isEditMode}
                 onSave={(text) => updateText('savingsTitle', text)}
               >
-                {currentTexts.savingsTitle || (
-                  <>
-                    Экономия до <span className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">{formatNumber(savings)} ₽/год</span>
-                  </>
-                )}
+                {currentTexts.savingsTitle || `Экономия до ${formatNumber(savings)} ₽/год`}
               </EditableText>
               <EditableText
                 as="p"
