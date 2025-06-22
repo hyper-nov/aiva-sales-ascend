@@ -7,7 +7,6 @@ import EditableEconomicsSlide from './presentation/EditableEconomicsSlide';
 import EditableBenefitsSlide from './presentation/EditableBenefitsSlide';
 import EditableComparisonSlide from './presentation/EditableComparisonSlide';
 import EditableCallToActionSlide from './presentation/EditableCallToActionSlide';
-import ContactForm from './ContactForm';
 import PrivacyPolicies from './PrivacyPolicies';
 import AIChatBot from './AIChatBot';
 
@@ -21,14 +20,6 @@ const LandingPage = () => {
       <EditableEconomicsSlide />
       <EditableBenefitsSlide />
       <EditableComparisonSlide />
-      
-      {/* Форма заявки */}
-      <div className="bg-gradient-to-br from-slate-50 to-white py-24">
-        <div className="max-w-2xl mx-auto px-8">
-          <ContactForm />
-        </div>
-      </div>
-      
       <EditableCallToActionSlide />
       
       {/* Политики */}
