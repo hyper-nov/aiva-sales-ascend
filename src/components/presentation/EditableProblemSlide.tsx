@@ -65,7 +65,7 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
             <problem.icon className="w-8 h-8 text-red-500" />
           </div>
           <EditableText
-            as="div"
+            as="span"
             className="text-4xl sm:text-5xl font-light text-red-500"
             isEditing={isEditMode}
             onSave={(text) => updateText(`stat${index}`, text)}
@@ -76,7 +76,7 @@ const EditableProblemSlide = ({ isEditMode = false, slideTexts = {}, setSlideTex
         
         <div className="space-y-3">
           <EditableText
-            as="div"
+            as="span"
             className="text-lg sm:text-xl text-slate-700 font-light"
             isEditing={isEditMode}
             onSave={(text) => updateText(`description${index}`, text)}

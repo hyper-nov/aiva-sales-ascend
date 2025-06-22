@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils';
 interface EditableTextProps {
   children: React.ReactNode;
   className?: string;
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
+  as?: 'h1' | 'h2' | 'h3' | 'h4' | 'p' | 'span' | 'div';
   isEditing: boolean;
   onSave?: (newText: string) => void;
 }

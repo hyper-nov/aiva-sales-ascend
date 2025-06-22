@@ -80,7 +80,7 @@ const EditableComparisonSlide = ({ isEditMode = false, slideTexts = {}, setSlide
           </div>
           <div className="space-y-1 sm:space-y-2">
             <EditableText
-              as="h4"
+              as="h3"
               className="text-sm sm:text-base font-medium text-slate-900"
               isEditing={isEditMode}
               onSave={(text) => updateText(`aiva${index}`, text)}
@@ -110,7 +110,7 @@ const EditableComparisonSlide = ({ isEditMode = false, slideTexts = {}, setSlide
           </div>
           <div className="space-y-1 sm:space-y-2">
             <EditableText
-              as="h4"
+              as="h3"
               className="text-sm sm:text-base font-medium text-slate-700"
               isEditing={isEditMode}
               onSave={(text) => updateText(`classic${index}`, text)}
