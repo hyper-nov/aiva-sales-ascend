@@ -4,6 +4,13 @@ import PresentationSlide from '../PresentationSlide';
 import { Bot, Zap, TrendingUp } from 'lucide-react';
 
 const EditableTitleSlide = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <PresentationSlide slideNumber={1} background="gradient">
       <div className="text-center space-y-8 sm:space-y-12 lg:space-y-16 px-4 sm:px-6 lg:px-8">
@@ -30,8 +37,11 @@ const EditableTitleSlide = () => {
 
         {/* Feature highlights */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 max-w-5xl mx-auto pt-8 sm:pt-12 lg:pt-16">
-          <div className="space-y-4 sm:space-y-6">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto">
+          <div 
+            className="space-y-4 sm:space-y-6 cursor-pointer transform hover:scale-105 transition-all duration-300"
+            onClick={() => scrollToSection('automation-processes')}
+          >
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto hover:from-blue-200 hover:to-purple-200 transition-all duration-300">
               <Bot className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />
             </div>
             <div className="space-y-2 sm:space-y-3">
@@ -44,8 +54,11 @@ const EditableTitleSlide = () => {
             </div>
           </div>
           
-          <div className="space-y-4 sm:space-y-6">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto">
+          <div 
+            className="space-y-4 sm:space-y-6 cursor-pointer transform hover:scale-105 transition-all duration-300"
+            onClick={() => scrollToSection('automation-processes')}
+          >
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto hover:from-blue-200 hover:to-purple-200 transition-all duration-300">
               <Zap className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />
             </div>
             <div className="space-y-2 sm:space-y-3">
@@ -58,8 +71,11 @@ const EditableTitleSlide = () => {
             </div>
           </div>
           
-          <div className="space-y-4 sm:space-y-6">
-            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto">
+          <div 
+            className="space-y-4 sm:space-y-6 cursor-pointer transform hover:scale-105 transition-all duration-300"
+            onClick={() => scrollToSection('benefits-slide')}
+          >
+            <div className="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-r from-blue-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto hover:from-blue-200 hover:to-purple-200 transition-all duration-300">
               <TrendingUp className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600" />
             </div>
             <div className="space-y-2 sm:space-y-3">
