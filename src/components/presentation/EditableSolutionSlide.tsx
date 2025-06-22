@@ -88,17 +88,23 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
     }
   ];
 
-  // Группируем преимущества по парам для мобильной карусели
-  const groupedBenefits = [];
-  for (let i = 0; i < benefits.length; i += 2) {
-    groupedBenefits.push(benefits.slice(i, i + 2));
-  }
+  // Правильная группировка преимуществ по парам для мобильной карусели
+  const groupedBenefits = React.useMemo(() => {
+    const groups = [];
+    for (let i = 0; i < benefits.length; i += 2) {
+      groups.push(benefits.slice(i, i + 2));
+    }
+    return groups;
+  }, []);
 
-  // Группируем реальные преимущества по парам для мобильной карусели  
-  const groupedRealBenefits = [];
-  for (let i = 0; i < realBenefits.length; i += 2) {
-    groupedRealBenefits.push(realBenefits.slice(i, i + 2));
-  }
+  // Правильная группировка реальных преимуществ по парам для мобильной карусели  
+  const groupedRealBenefits = React.useMemo(() => {
+    const groups = [];
+    for (let i = 0; i < realBenefits.length; i += 2) {
+      groups.push(realBenefits.slice(i, i + 2));
+    }
+    return groups;
+  }, []);
 
   return (
     <PresentationSlide slideNumber={4} background="gradient">
@@ -153,8 +159,10 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
                     </CarouselItem>
                   ))}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                <div className="flex justify-center mt-4 space-x-2">
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </div>
               </Carousel>
             </div>
           ) : (
@@ -206,8 +214,10 @@ const EditableSolutionSlide = ({ isEditMode = false, slideTexts = {}, setSlideTe
                       </CarouselItem>
                     ))}
                   </CarouselContent>
-                  <CarouselPrevious />
-                  <CarouselNext />
+                  <div className="flex justify-center mt-4 space-x-2">
+                    <CarouselPrevious />
+                    <CarouselNext />
+                  </div>
                 </Carousel>
               </div>
             ) : (
